@@ -14,6 +14,11 @@ class ListItem extends Component {
     LayoutAnimation.spring();
   }
 
+  onPressLibrary() {
+    const { library, expanded, selectLibrary } = this.props;
+    selectLibrary(expanded ? null : library.id);
+  }
+
   renderDescription() {
     const { library, expanded } = this.props;
     if (expanded) {
@@ -28,12 +33,12 @@ class ListItem extends Component {
   }
 
   render() {
-    const { id, title } = this.props.library;
+    const { title } = this.props.library;
     const { titleStyle } = styles;
 
     return (
       <TouchableWithoutFeedback
-        onPress={() => this.props.selectLibrary(id)}
+        onPress={this.onPressLibrary.bind(this)}
       >
         <View>
           <CardSection>
